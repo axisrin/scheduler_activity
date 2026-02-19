@@ -1,8 +1,8 @@
 services:
   
   schedule_friend_bot:
-    container-name: 
-      schedule_friend_bot_python
+    container_name:
+       schedule_friend_bot
     build: 
       .
     env_file: 
@@ -16,9 +16,10 @@ services:
         redis://redis:6397/0
     volumes:
       - ./data:/app/data
+      - ./:/app
     restart: 
       unless-stopped
-    depends-on:
+    depends_on:
       redis:
         condition:
           service_healthy
@@ -39,8 +40,8 @@ services:
         20s
 
   redis:
-    container_name: 
-      schedule_friend_bot_redis
+    container_name:
+       schedule_friend_bot_redis   
     image:
       redis:7-alpine
     restart:
